@@ -1,5 +1,5 @@
 import { Image, Text, View } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 import { Feather } from "@expo/vector-icons";
 
 import { useCartStore } from "@/stores/cart-store";
@@ -12,6 +12,7 @@ import { LinkButton } from "@/components/link-button";
 
 export default function Product() {
   const cartStore = useCartStore();
+  const navigation = useNavigation();
   // Retrieves the ID
   const { id } = useLocalSearchParams();
 
@@ -19,6 +20,7 @@ export default function Product() {
 
   function handleAddToCart() {
     cartStore.add(product);
+    navigation.goBack();
   }
 
   return (
