@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import {
   Image,
   ImageProps,
+  ScrollView,
   Text,
   TouchableOpacity,
   TouchableOpacityProps,
