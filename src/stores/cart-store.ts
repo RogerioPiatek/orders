@@ -13,12 +13,14 @@ interface StateProps {
   products: ProductCartProps[];
   add: (product: ProductProps) => void;
   remove: (productId: string) => void;
+  clear: () => void;
 }
 
 export const useCartStore = create(
   persist<StateProps>(
     (set) => ({
       products: [],
+
       add: (product: ProductProps) =>
         set((state) => ({
           products: cartInMemory.add(state.products, product),
@@ -29,6 +31,8 @@ export const useCartStore = create(
           products: cartInMemory.remove(state.products, productId),
         }));
       },
+
+      clear: () => set(() => ({ products: [] })),
     }),
     {
       name: "orders:cart",
